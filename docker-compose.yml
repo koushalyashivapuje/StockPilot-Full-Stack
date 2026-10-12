@@ -1,0 +1,19 @@
+# Convenience only: spins up a local MySQL instance for development.
+# Not required for deployment - any MySQL 8.x instance works.
+version: "3.8"
+services:
+  mysql:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: stockpilot
+      MYSQL_USER: stockpilot
+      MYSQL_PASSWORD: stockpilot
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - stockpilot_mysql_data:/var/lib/mysql
+
+volumes:
+  stockpilot_mysql_data:
